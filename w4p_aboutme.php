@@ -3,7 +3,7 @@
 Plugin Name: Web4pro Aboutme
 Plugin URI:
 Description: Create widget with information about the site owner
-Version: 1.0
+Version: 1.1
 Author: Web4pro
 Author URI: http://www.web4pro.net/
 */
