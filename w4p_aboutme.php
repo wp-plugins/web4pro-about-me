@@ -25,7 +25,7 @@ function w4p_size($defaultSizes)
     return array_merge($defaultSizes, $size);
 }
 
-function web4pro_aboutme_uploadscript() //Registering upload javascript
+function web4pro_aboutme_uploadscript($hook) //Registering upload javascript
 {
     // wp_enqueue_script('jquery');
     if (!did_action('wp_enqueue_media')) {
@@ -37,7 +37,9 @@ function web4pro_aboutme_uploadscript() //Registering upload javascript
     wp_enqueue_script('media-upload');
     wp_enqueue_script('thickbox');
 
-    wp_enqueue_script('w4p_upload', plugins_url('js/upload.js', __FILE__), array('jquery'), null, false);
+    if($hook == 'widgets.php') {
+        wp_enqueue_script('w4p_upload', plugins_url('js/upload.js', __FILE__), array('jquery'), null, false);
+    }
 }
 
 function w4p_add_front_style() //Registering css
@@ -78,6 +80,9 @@ class Web4pro_Aboutme_Widget extends WP_Widget
         $feed_burner = isset($instance['feedburner']) ? $instance['feedburner'] : '';
         $skype = isset($instance['skype']) ? $instance['skype'] : '';
         $lastfm = isset($instance['lastfm']) ? $instance['lastfm'] : '';
+        $instagram = isset($instance['instagram']) ? $instance['instagram'] : '';
+        $deviantart = isset($instance['deviantart']) ? $instance['deviantart'] : '';
+        $pinterest = isset($instance['pinterest']) ? $instance['pinterest'] : '';
         ?>
         <!-- Widget title -->
         <p>
@@ -189,6 +194,30 @@ class Web4pro_Aboutme_Widget extends WP_Widget
                    placeholder="http://last.fm">
         </div>
         </p>
+        <p>
+        <div class="social-links-list">
+            <img src="<?php echo plugins_url('images/Instagram.jpg', __FILE__); ?>" class="social-link-image">
+            <input type="text" id="<?php echo $this->get_field_id('instagram'); ?>"
+                   name="<?php echo $this->get_field_name('instagram'); ?>" value="<?php echo esc_attr($instagram); ?>"
+                   placeholder="https://instagram.com">
+        </div>
+        </p>
+        <p>
+        <div class="social-links-list">
+            <img src="<?php echo plugins_url('images/Deviantart.jpg', __FILE__); ?>" class="social-link-image">
+            <input type="text" id="<?php echo $this->get_field_id('deviantart'); ?>"
+                   name="<?php echo $this->get_field_name('deviantart'); ?>" value="<?php echo esc_attr($deviantart); ?>"
+                   placeholder="http://www.deviantart.com">
+        </div>
+        </p>
+        <p>
+        <div class="social-links-list">
+            <img src="<?php echo plugins_url('images/Pinterest.jpg', __FILE__); ?>" class="social-link-image">
+            <input type="text" id="<?php echo $this->get_field_id('pinterest'); ?>"
+                   name="<?php echo $this->get_field_name('pinterest'); ?>" value="<?php echo esc_attr($pinterest); ?>"
+                   placeholder="https://www.pinterest.com">
+        </div>
+        </p>
     <?php
     }
 
@@ -210,6 +239,9 @@ class Web4pro_Aboutme_Widget extends WP_Widget
         $instance['youtube'] = (!empty($new_instance['youtube'])) ? strip_tags($new_instance['youtube']) : '';
         $instance['skype'] = (!empty($new_instance['skype'])) ? strip_tags($new_instance['skype']) : '';
         $instance['lastfm'] = (!empty($new_instance['lastfm'])) ? strip_tags($new_instance['lastfm']) : '';
+        $instance['instagram'] = (!empty($new_instance['instagram'])) ? strip_tags($new_instance['instagram']) : '';
+        $instance['deviantart'] = (!empty($new_instance['deviantart'])) ? strip_tags($new_instance['deviantart']) : '';
+        $instance['pinterest'] = (!empty($new_instance['pinterest'])) ? strip_tags($new_instance['pinterest']) : '';
         return $instance;
     }
 
@@ -316,6 +348,33 @@ class Web4pro_Aboutme_Widget extends WP_Widget
                     <li class="w4p-lastfm">
                         <a href="<?php echo $instance['lastfm']; ?>" target="_blank">
                             <img src="<?php echo plugins_url('images/LastFM.jpg', __FILE__); ?>">
+                        </a>
+                    </li>
+                <?php
+                }
+                if (isset($instance['instagram']) && !empty($instance['instagram'])) {
+                    ?>
+                    <li class="w4p-instagram">
+                        <a href="<?php echo $instance['instagram']; ?>" target="_blank">
+                            <img src="<?php echo plugins_url('images/Instagram.jpg', __FILE__); ?>">
+                        </a>
+                    </li>
+                <?php
+                }
+                if (isset($instance['deviantart']) && !empty($instance['deviantart'])) {
+                    ?>
+                    <li class="w4p-deviantart">
+                        <a href="<?php echo $instance['deviantart']; ?>" target="_blank">
+                            <img src="<?php echo plugins_url('images/Deviantart.jpg', __FILE__); ?>">
+                        </a>
+                    </li>
+                <?php
+                }
+                if (isset($instance['pinterest']) && !empty($instance['pinterest'])) {
+                    ?>
+                    <li class="w4p-pinterest">
+                        <a href="<?php echo $instance['pinterest']; ?>" target="_blank">
+                            <img src="<?php echo plugins_url('images/Pinterest.jpg', __FILE__); ?>">
                         </a>
                     </li>
                 <?php

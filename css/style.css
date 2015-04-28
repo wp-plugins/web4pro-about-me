@@ -45,14 +45,14 @@
 .social-links li {
     height: 30px;
     width: 30px;
-    float: left;
-    margin-right: 7px;
+    display: inline-block;
+    margin: 0 4px;
     margin-top: 10px;
-
 }
 
 .social-links{
     overflow: hidden;
+    text-align: center;
 }
 
 .body-text {

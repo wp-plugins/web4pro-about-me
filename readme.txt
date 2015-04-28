@@ -3,8 +3,8 @@ Contributors: WEB4PRO_co
 Donate link: http://www.web4pro.net
 Tags: Widget, About me, Aboutme information
 Requires at least: 3.5.1
-Tested up to: 4.0
-Stable tag: 1.0
+Tested up to: 4.2.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,5 +34,9 @@ This plugin creates widget with information about the author of the site. You ca
 3. Web4pro About me widget settings, social links part
 
 == Changelog ==
+= 1.1 =
+
+* Fixed bug with inserting images into post content
+* Added Pinterest, Deviant Art and Instagram buttons
 
 = 1.0 =
